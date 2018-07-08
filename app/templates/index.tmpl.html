@@ -5,6 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="root"></div>
+<% for (var key in htmlWebpackPlugin.files.js) { %>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[key] %>"></script>
+<% } %>
 </body>
 </html>
