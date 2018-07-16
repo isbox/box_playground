@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
     staticFilePath: 'static',
     dev: {
         NODE_ENV: '"development"',

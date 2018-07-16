@@ -5,7 +5,7 @@ function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
 
-module.export = {
+module.exports = {
     context: path.resolve('..'),
     entry: {
         app: process.env.NODE_ENV === 'product'
@@ -21,7 +21,7 @@ module.export = {
             : config.dev.staticPublicPath
     },
     resolve: {
-        extensions: ['js', 'jsx', 'json'],
+        extensions: ['.js', '.jsx', '.json'],
         alias: {
             '@': resolve('app')
         }
@@ -62,7 +62,9 @@ module.export = {
                 test: /\.js[x]$/,
                 use: {
                     loader: 'babel-loader',
-                    include: [resolve('app')]
+                    options: {
+                        include: [resolve('app')]
+                    }
                 }
             }, {
                 test: /\.jpe?g|png|gif|svg$/,

@@ -5,9 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./config');
 const baseWebpackConfig = require('./webpack.base');
 
-let htmlTemplate = path.join(__dirname, '..', 'template/index.tmpl.html');
+let htmlTemplate = path.join(__dirname, '..', 'app', 'templates/index.tmpl.html');
 
-module.export = merge(baseWebpackConfig, {
+module.exports = merge(baseWebpackConfig, {
     devtool: config.dev.devtool,
     plugins: [
         new webpack.DefinePlugin({
@@ -22,7 +22,6 @@ module.export = merge(baseWebpackConfig, {
     ],
     devServer: {
         contentBase: path.join(__dirname, '..', 'app'),
-        color: true,
         hot: true,
         inline: true,
         disableHostCheck: true,
