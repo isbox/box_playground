@@ -2,8 +2,10 @@
 const path = require('path');
 const config = require('./config');
 function resolve(dir) {
-    return path.join(__dirname, '..', dir)
+    return path.join(__dirname, '../', dir)
 }
+
+// [`webpack-dev-server/client?localhost:${config.dev.port}`, resolve('app/app.js')],
 
 module.exports = {
     context: path.resolve('..'),
@@ -21,10 +23,14 @@ module.exports = {
             : config.dev.staticPublicPath
     },
     resolve: {
+        // modules: [resolve('node_modules')],
         extensions: ['.js', '.jsx', '.json'],
         alias: {
             '@': resolve('app')
         }
+    },
+    resolveLoader: {
+        modules: [resolve('node_modules')]
     },
     module: {
         rules: [
@@ -59,11 +65,12 @@ module.exports = {
                     }
                 }]
             }, {
-                test: /\.js[x]$/,
+                test: /\.jsx?$/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        include: [resolve('app')]
+                        exclude: resolve('node_modules')
+                        // include: [resolve('app')]
                     }
                 }
             }, {
