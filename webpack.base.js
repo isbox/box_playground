@@ -1,8 +1,8 @@
 "use strict";
 const path = require('path');
-const config = require('./config');
+const config = require('./build/config');
 function resolve(dir) {
-    return path.join(__dirname, '../', dir)
+    return path.join(__dirname, dir)
 }
 
 // [`webpack-dev-server/client?localhost:${config.dev.port}`, resolve('app/app.js')],
@@ -30,7 +30,7 @@ module.exports = {
         }
     },
     resolveLoader: {
-        modules: [resolve('node_modules')]
+        // modules: [resolve('node_modules')]
     },
     module: {
         rules: [

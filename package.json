@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "set NODE_ENV=development && webpack-dev-server --mode development --host 0.0.0.0 --config build/webpack.dev.config.js"
+    "start": "set NODE_ENV=development && webpack-dev-server --mode development --host 0.0.0.0 --config webpack.dev.config.js"
   },
   "keywords": [],
   "author": "",
