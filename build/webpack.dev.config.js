@@ -5,12 +5,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./config');
 const baseWebpackConfig = require('./webpack.base');
 
-let htmlTemplate = path.join(__dirname, '..', 'app', 'templates/index.tmpl.html');
+let htmlTemplate = path.join(__dirname, '../', 'app', 'templates/index.tmpl.html');
 
 module.exports = merge(baseWebpackConfig, {
     devtool: config.dev.devtool,
     mode: 'development',
     plugins: [
+        new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
@@ -23,7 +24,7 @@ module.exports = merge(baseWebpackConfig, {
         })
     ],
     devServer: {
-        contentBase: path.join(__dirname, '..', 'app'),
+        contentBase: path.join(__dirname, '../', 'app'),
         hot: true,
         inline: true,
         disableHostCheck: true,

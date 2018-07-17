@@ -10,20 +10,19 @@ function resolve(dir) {
 module.exports = {
     context: path.resolve('../'),
     entry: {
-        app: process.env.NODE_ENV === 'product'
-            ? resolve('app/app.js')
-            : [`webpack-dev-server/client?localhost:${config.dev.port}`, resolve('app/app.js')],
+        app: resolve('app/app.js'),
         vendors: ['react', 'react-dom', 'react-router']
     },
     output: {
-        path: resolve('dist'),
-        filename: '[name].js',
+        path: process.env.NODE_ENV === 'product' ? resolve('dist') : resolve('app'),
+        filename: './public/js/[name].js',
+        chunkFilename: './public/js/[id]-[name].chunk.js',
         publicPath: process.env.NODE_ENV === 'product'
             ? config.build.staticPublicPath
             : config.dev.staticPublicPath
     },
     resolve: {
-        // modules: [resolve('node_modules')],
+        modules: [resolve('node_modules')],
         extensions: ['.js', '.jsx', '.json'],
         alias: {
             '@': resolve('app')
@@ -35,6 +34,11 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js[x]?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader'
+                // loader: 'babel?presets[]=react,presets[]=es2015,plugins[]=transform-object-assign'
+            }, {
                 test: /.less$/,
                 use: [{
                     loader: 'style-loader'
@@ -65,31 +69,18 @@ module.exports = {
                     }
                 }]
             }, {
-                test: /\.jsx?$/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        exclude: resolve('node_modules'),
-                        include: [resolve('app')]
-                    }
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url',
+                query: {
+                    limit: 5000,
+                    name: '/public/css/img/[name].[hash:6].[ext]'
                 }
             }, {
-                test: /\.jpe?g|png|gif|svg$/,
-                use: {
-                    loader: 'url-loader',
-                    options: {
-                        limit: 10000,
-                        name: resolve(`${config.staticFilePath}/img/[name].[hash:7].[ext]`)
-                    }
-                }
-            }, {
-                test: /\.woff2?|eot|ttf|otf$/,
-                use: {
-                    loader: 'url-loader',
-                    options: {
-                        limit: 10000,
-                        name: resolve(`${config.staticFilePath}/font/[name].[hash:7].[ext]`)
-                    }
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url',
+                query: {
+                    limit: 5000,
+                    name: '/public/css/fonts/[name].[hash:6].[ext]'
                 }
             }
         ]
