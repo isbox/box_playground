@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "set NODE_ENV=development && webpack-dev-server --mode development --host 0.0.0.0 --config webpack.config.js",
-    "started": "set NODE_ENV=development && webpack-dev-server --mode development --host 0.0.0.0 --config ./build/webpack.dev.config.js"
+    "start": "set NODE_ENV=development && webpack-dev-server --mode development --host 0.0.0.0 --config ./build/webpack.dev.config.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +18,7 @@
   "devDependencies": {
     "autoprefixer": "^8.6.5",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
     "babel-loader": "^7.1.5",
     "babel-plugin-import": "^1.8.0",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -28,6 +28,9 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^1.0.0",
+    "eslint": "^5.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-react": "^7.10.0",
     "html-webpack-plugin": "^3.2.0",
     "less-loader": "^4.1.0",
     "manifest-webpack-plugin": "^0.2.0",
