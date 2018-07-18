@@ -4,6 +4,7 @@ module.exports = {
         NODE_ENV: '"development"',
         devtool: 'cheap-module-eval-source-map',
         staticPublicPath: '/',
+        useEslint: true,
         port: 8080
     },
     build: {

@@ -10,6 +10,15 @@ let htmlTemplate = path.join(__dirname, '../', 'app', 'templates/index.tmpl.html
 module.exports = merge(baseWebpackConfig, {
     devtool: config.dev.devtool,
     mode: 'development',
+    module: {
+        rules: [{
+            test: /\.js$/,
+            loader: 'eslint-loader',
+            enforce: 'pre',
+            include: path.join(__dirname, '../', 'app'),
+            exclude: [path.join(__dirname, '../', 'node_modules')]
+        }]
+    },
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
