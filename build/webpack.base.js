@@ -10,13 +10,13 @@ function resolve(dir) {
 module.exports = {
     context: path.resolve('../'),
     entry: {
-        app: resolve('app/app.js'),
-        vendors: ['react', 'react-dom', 'react-router']
+        app: ['babel-polyfill', resolve('app/app.js')],
+        vendors: ['react', 'react-dom', 'react-router-dom']
     },
     output: {
         path: process.env.NODE_ENV === 'product' ? resolve('dist') : resolve('app'),
         filename: './public/js/[name].js',
-        chunkFilename: './public/js/[id]-[name].chunk.js',
+        chunkFilename: './public/js/[id]-[name].[chunkhash:8].chunk.js',
         publicPath: process.env.NODE_ENV === 'product'
             ? config.build.staticPublicPath
             : config.dev.staticPublicPath
@@ -36,7 +36,7 @@ module.exports = {
             {
                 test: /\.js[x]?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
                 // loader: 'babel?presets[]=react,presets[]=es2015,plugins[]=transform-object-assign'
             }, {
                 test: /.less$/,
