@@ -11,12 +11,12 @@ module.exports = {
     context: path.resolve('../'),
     entry: {
         app: ['babel-polyfill', resolve('app/app.js')],
-        vendors: ['react', 'react-dom', 'react-router-dom']
+        vendors: ['react', 'react-dom', 'react-router']
     },
     output: {
         path: process.env.NODE_ENV === 'product' ? resolve('dist') : resolve('app'),
         filename: './public/js/[name].js',
-        chunkFilename: './public/js/[id]-[name].[chunkhash:8].chunk.js',
+        chunkFilename: './public/js/[name].[chunkhash:8].chunk.js',
         publicPath: process.env.NODE_ENV === 'product'
             ? config.build.staticPublicPath
             : config.dev.staticPublicPath

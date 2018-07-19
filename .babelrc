@@ -12,7 +12,6 @@
   ],
   "plugins": [
     "transform-runtime",
-    "syntax-dynamic-import",
     "transform-object-rest-spread",
     ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "true" }]
   ]
