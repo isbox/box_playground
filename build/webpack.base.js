@@ -39,7 +39,7 @@ module.exports = {
                 loader: 'babel-loader',
                 // loader: 'babel?presets[]=react,presets[]=es2015,plugins[]=transform-object-assign'
             }, {
-                test: /.less$/,
+                test: /\.less$/,
                 use: [{
                     loader: 'style-loader'
                 }, {
@@ -65,7 +65,8 @@ module.exports = {
                 }, {
                     loader: 'less-loader',
                     options: {
-                        sourceMap: true
+                        sourceMap: true,
+                        javascriptEnabled: true
                     }
                 }]
             }, {

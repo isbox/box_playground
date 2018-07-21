@@ -1,0 +1,27 @@
+@direction: l, r, t, b;
+@direction_length: length(@direction);
+
+.range_big(@val) when (@val >= 10) {
+    .mp_scope(@val);
+}
+
+.range_small(@val) when (@val < 10) {
+    .mp_scope(@val);
+}
+
+.range_type(@len, @type, @val) when (@len > 0) {
+    @dire: extract(@direction, @len);
+    .xg-@{type}@{dire}-@{val} {
+        padding-left: @val * 1rem;
+    }
+}
+
+.mp_scope(@val) when (@val > 0) {
+    .range_type(@direction_length, p, @val);
+    .range_type(@direction_length, m, @val);
+
+    .range_big(@val - 5);
+    .range_small(@val - 1);
+}
+
+.mp_scope(@mp_scope);

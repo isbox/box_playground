@@ -7,7 +7,7 @@ module.exports = {
     },
     "rules": {
         "semi": [2, "always"],        //语句强制分号结尾
-        "indent": ["error", 4],       //缩进
+        "indent": [2, 4],             //缩进
         "eqeqeq": 2,                  //必须使用全等
         "curly": [2, "all"],          //必须使用 if(){} 中的{}
         "no-eval": 2,                 //禁止使用eval
