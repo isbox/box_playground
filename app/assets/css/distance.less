@@ -1,5 +1,9 @@
-@direction: l, r, t, b;
-@direction_length: length(@direction);
+@distance_locate: l, r, t, b;
+@distance_locate_type: left, right, top, bottom;
+@distance_locate_length: length(@distance_locate);
+
+@distance_type: p, m;
+@distance_type_info: padding, margin;
 
 .range_big(@val) when (@val >= 10) {
     .mp_scope(@val);
@@ -9,16 +13,23 @@
     .mp_scope(@val);
 }
 
-.range_type(@len, @type, @val) when (@len > 0) {
-    @dire: extract(@direction, @len);
-    .xg-@{type}@{dire}-@{val} {
-        padding-left: @val * 1rem;
+.range_type(@len, @type_index, @val) when (@len > 0) {
+    @dire_loc: extract(@distance_locate, @len);
+    @dire_loc_type: extract(@distance_locate_type, @len);
+
+    @type: extract(@distance_type, @type_index);
+    @type_info: extract(@distance_type_info, @type_index);
+
+    .xg-@{type}@{dire_loc}-@{val} {
+        @{type_info}-@{dire_loc_type}: @val * 1px;
     }
+
+    .range_type(@len - 1, @type_index, @val);
 }
 
 .mp_scope(@val) when (@val > 0) {
-    .range_type(@direction_length, p, @val);
-    .range_type(@direction_length, m, @val);
+    .range_type(@distance_locate_length, 1, @val);
+    .range_type(@distance_locate_length, 2, @val);
 
     .range_big(@val - 5);
     .range_small(@val - 1);
