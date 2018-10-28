@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, message } from 'antd';
 import { Link } from 'react-router';
-import axios from 'axios';
+import fetch from '@/lib/fetch';
 
 export default class extends Component {
     constructor(props) {
@@ -10,15 +10,9 @@ export default class extends Component {
         this.routerWillLeave = this.routerWillLeave.bind(this);
     }
 
-    // componentDidMount() {
-    //     axios.get('http://g.cn').then(da => {
-    //         console.log(da);
-    //     });
-    // }
-
     async componentDidMount() {
-        let da = await axios.get('http://g.cn');
-        console.log(da);
+        // let da = await fetch.get('http://g.cn');
+        // console.log(da);
         this.props.router.setRouteLeaveHook(
             this.props.route,
             this.routerWillLeave

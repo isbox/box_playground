@@ -5,9 +5,6 @@ import routes from './routes';
 import 'antd/dist/antd.less';
 import './assets/css/app.less';
 
-import './api/mock';
-
-
 class App extends Component {
     constructor(props) {
         super(props);
