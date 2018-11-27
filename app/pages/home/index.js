@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { Button, message } from 'antd';
 import { Link } from 'react-router';
+import { bindAll } from 'lodash';
 import fetch from '@/lib/fetch';
 
 export default class extends Component {
     constructor(props) {
         super(props);
-        this.info = this.info.bind(this);
-        this.routerWillLeave = this.routerWillLeave.bind(this);
+
+        bindAll(this, [
+            'info',
+            'routerWillLeave'
+        ]);
     }
 
     async componentDidMount() {
