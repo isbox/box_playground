@@ -1,38 +1,40 @@
-@distance_locate: l, r, t, b;
-@distance_locate_type: left, right, top, bottom;
+@distance_locate: l left, r right, t top, b bottom;
 @distance_locate_length: length(@distance_locate);
 
-@distance_type: p, m;
-@distance_type_info: padding, margin;
+@distance_type: p padding, m margin;
+@distance_type_length: length(@distance_type);
 
-.range_big(@val) when (@val >= 10) {
-    .mp_scope(@val);
-}
-
-.range_small(@val) when (@val < 10) {
-    .mp_scope(@val);
-}
-
-.range_type(@len, @type_index, @val) when (@len > 0) {
-    @dire_loc: extract(@distance_locate, @len);
-    @dire_loc_type: extract(@distance_locate_type, @len);
-
-    @type: extract(@distance_type, @type_index);
-    @type_info: extract(@distance_type_info, @type_index);
-
-    .xg-@{type}@{dire_loc}-@{val} {
-        @{type_info}-@{dire_loc_type}: @val * 1px;
+.distance(@as_type, @type, @as_locate, @locate, @num: 1) when (@num <= @mp_scope) {
+    .@{as_type}@{as_locate}-@{num} {
+        @{type}-@{locate}: @num * 1px;
     }
-
-    .range_type(@len - 1, @type_index, @val);
+    .distance(@as_type, @type, @as_locate, @locate, @num + 1);
 }
 
-.mp_scope(@val) when (@val > 0) {
-    .range_type(@distance_locate_length, 1, @val);
-    .range_type(@distance_locate_length, 2, @val);
+.distance-locate(@as_type, @type, @len: 1) when (@len <= @distance_locate_length) {
+    @target: extract(@distance_locate, @len);
+    @key: extract(@target, 1);
+    @value: extract(@target, 2);
 
-    .range_big(@val - 5);
-    .range_small(@val - 1);
+    .distance(@as_type, @type, @key, @value);
+    .distance-locate(@as_type, @type, @len + 1);
 }
 
-.mp_scope(@mp_scope);
+.distance-type(@len: 1) when (@len <= @distance_type_length) {
+    @target: extract(@distance_type, @len);
+    @key: extract(@target, 1);
+    @value: extract(@target, 2);
+
+    .distance-locate(@key, @value);
+    .distance-type(@len + 1);
+}
+
+.distance-type();
+
+.m-0 {
+    margin: 0;
+}
+
+.p-0 {
+    padding: 0;
+}

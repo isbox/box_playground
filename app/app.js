@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Layout } from 'antd';
 import routes from './routes';
+import Header from '@/components/header';
 
 import 'antd/dist/antd.less';
 import './assets/css/app.less';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Footer, Sider, Content } = Layout;
 class App extends Component {
     constructor(props) {
         super(props);

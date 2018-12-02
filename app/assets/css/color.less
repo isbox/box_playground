@@ -1,0 +1,27 @@
+@tc-length: length(@text-color);
+
+.text-color(@num) when (@num <= @tc-length) {
+    @target: extract(@text-color, @num);
+    @key: extract(@target, 1);
+    @value: extract(@target, 2);
+    .tc-@{key} {
+        color: @value;
+    }
+    .text-color(@num + 1);
+}
+
+.text-color(1);
+
+@bg-length: length(@background-color);
+
+.bg-color(@num) when (@num <= @bg-length) {
+    @target: extract(@background-color, @num);
+    @key: extract(@target, 1);
+    @value: extract(@target, 2);
+    .bg-@{key} {
+        background-color: @value;
+    }
+    .bg-color(@num + 1);
+}
+
+.bg-color(1);

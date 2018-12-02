@@ -1,0 +1,49 @@
+@align: start flex-start, end flex-end, center center, baseline baseline, stretch stretch;
+@justify: start flex-start, end flex-end, center center, between space-between, around space-around;
+@flex-size: 3;
+
+.align-items(@len: length(@align)) when (@len > 0) {
+    @target: extract(@align, @len);
+    @key: extract(@target, 1);
+    @value: extract(@target, 2);
+    .align-items-@{key} {
+        align-items: @value;
+    }
+
+    .align-items(@len - 1);
+}
+
+.align-items();
+
+.justify-content(@len: length(@justify)) when (@len > 0) {
+    @target: extract(@align, @len);
+    @key: extract(@target, 1);
+    @value: extract(@target, 2);
+    .justify-content-@{key} {
+        justify-content: @value;
+    }
+
+    .justify-content(@len - 1);
+}
+
+.justify-content();
+
+.flex-size(@size: 1) when (@size <= @flex-size) {
+    .flex@{size} {
+        flex: @size;
+    }
+
+    .flex-size(@size + 1);
+}
+
+.flex-size();
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}

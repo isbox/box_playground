@@ -1,9 +1,13 @@
-.fs_range(@val) when (@fs_scope > 11) {
+.fs_range(@val) when (@val > 11) {
     .fs-@{val} {
         font-size: @val * 1px;
     }
+
+    .fs_range(@val - 1);
 }
 
 .fs-0 {
     font-size: 0;
 }
+
+.fs_range(@fs_scope);
