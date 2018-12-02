@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Layout } from 'antd';
 import routes from './routes';
 
 import 'antd/dist/antd.less';
 import './assets/css/app.less';
 
+const { Header, Footer, Sider, Content } = Layout;
 class App extends Component {
     constructor(props) {
         super(props);
@@ -12,9 +14,14 @@ class App extends Component {
 
     render() {
         return <div id="app">
-            <h3>Hello React!</h3>
-            <p>you can start react project</p>
-            {routes()}
+            <Layout className="vh-100">
+                <Sider>Sider</Sider>
+                <Layout>
+                    <Header>Header</Header>
+                    <Content>{routes()}</Content>
+                    <Footer>Footer</Footer>
+                </Layout>
+            </Layout>
         </div>;
     }
 }
