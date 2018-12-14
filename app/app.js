@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'mobx-react';
 import { Layout } from 'antd';
 import { bindAll } from 'lodash';
 import routes from './routes';
+import Store from './store';
 import Header from '@/components/header';
 
 import 'antd/dist/antd.less';
@@ -27,18 +29,20 @@ class App extends Component {
     }
 
     render() {
-        return <div id="app">
-            <Layout className="vh-100">
-                <Sider collapsed={this.state.side}>
-                    
-                </Sider>
-                <Layout>
-                    <Header sideControl={this.sideControl} />
-                    <Content>{routes()}</Content>
-                    <Footer>Footer</Footer>
+        return <Provider rootStore={new Store()}>
+            <div id="app">
+                <Layout className="vh-100">
+                    <Sider collapsed={this.state.side}>
+
+                    </Sider>
+                    <Layout>
+                        <Header sideControl={this.sideControl} />
+                        <Content>{routes()}</Content>
+                        <Footer>Footer</Footer>
+                    </Layout>
                 </Layout>
-            </Layout>
-        </div>;
+            </div>
+        </Provider>;
     }
 }
 
