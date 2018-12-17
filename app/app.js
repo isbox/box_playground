@@ -4,7 +4,7 @@ import { Provider } from 'mobx-react';
 import { Layout } from 'antd';
 import { bindAll } from 'lodash';
 import routes from './routes';
-import Store from './store';
+import RootStore from './store';
 import Header from '@/components/header';
 
 import 'antd/dist/antd.less';
@@ -29,7 +29,7 @@ class App extends Component {
     }
 
     render() {
-        return <Provider rootStore={new Store()}>
+        return <Provider rootStore={new RootStore()}>
             <div id="app">
                 <Layout className="vh-100">
                     <Sider collapsed={this.state.side}>

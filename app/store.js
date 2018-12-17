@@ -1,6 +1,6 @@
 import UserStore from '@/models/user';
 
-class RootStore {
+export default class RootStore {
     constructor() {
         this.userStore = new UserStore(this);
     }
