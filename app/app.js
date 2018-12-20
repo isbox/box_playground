@@ -29,21 +29,24 @@ class App extends Component {
     }
 
     render() {
-        return <Provider rootStore={new RootStore()}>
-            <div id="app">
-                <Layout className="vh-100">
-                    <Sider collapsed={this.state.side}>
+        return <div id="app">
+            <Layout className="vh-100">
+                <Sider collapsed={this.state.side}>
 
-                    </Sider>
-                    <Layout>
-                        <Header sideControl={this.sideControl} />
-                        <Content>{routes()}</Content>
-                        <Footer>Footer</Footer>
-                    </Layout>
+                </Sider>
+                <Layout>
+                    <Header sideControl={this.sideControl} />
+                    <Content>{routes()}</Content>
+                    <Footer>Footer</Footer>
                 </Layout>
-            </div>
-        </Provider>;
+            </Layout>
+        </div>;
     }
 }
 
-render(<App />, document.querySelector('#root'));
+render(
+    <Provider rootStore={new RootStore()}>
+        <App />
+    </Provider>,
+    document.querySelector('#root')
+);
