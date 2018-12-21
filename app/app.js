@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'mobx-react';
+import { Provider, inject } from 'mobx-react';
 import { Layout } from 'antd';
 import { bindAll } from 'lodash';
 import routes from './routes';
-import RootStore from './store';
+import store from './store';
 import Header from '@/components/header';
 
 import 'antd/dist/antd.less';
 import './assets/css/app.less';
 
 const { Footer, Sider, Content } = Layout;
+
+@inject('store')
 class App extends Component {
     constructor(props) {
         super(props);
@@ -45,7 +47,7 @@ class App extends Component {
 }
 
 render(
-    <Provider rootStore={new RootStore()}>
+    <Provider store={store}>
         <App />
     </Provider>,
     document.querySelector('#root')
