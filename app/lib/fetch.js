@@ -1,16 +1,13 @@
 import axios from 'axios';
 
 class Fetch {
-    constructor(options) {
 
-    }
-
-    get(url, options = {}) {
+    static get(url, options = {}) {
         options.url = url;
         Fetch.fetch(options, 'get');
     }
 
-    post(url, options = {}) {
+    static post(url, options = {}) {
         options.url = url;
         Fetch.fetch(options, 'post');
     }
@@ -30,4 +27,4 @@ class Fetch {
     }
 }
 
-export default new Fetch();
+export default Fetch;

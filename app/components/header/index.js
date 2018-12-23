@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Layout, Icon } from 'antd';
+import Login from '../login';
 
 export default class Header extends PureComponent {
     render() {
@@ -9,6 +10,7 @@ export default class Header extends PureComponent {
                 <Icon onClick={this.props.sideControl} className="fs-24 mr-10 pointer" type="bars" />
                 playground
             </h3>
+            <Login />
         </Layout.Header>;
     }
 }

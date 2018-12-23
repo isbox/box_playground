@@ -12,7 +12,7 @@ import './assets/css/app.less';
 
 const { Footer, Sider, Content } = Layout;
 
-@inject('store')
+@inject(rootStore => rootStore.store.userStore)
 class App extends Component {
     constructor(props) {
         super(props);
