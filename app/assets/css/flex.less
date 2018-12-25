@@ -16,7 +16,7 @@
 .align-items();
 
 .justify-content(@len: length(@justify)) when (@len > 0) {
-    @target: extract(@align, @len);
+    @target: extract(@justify, @len);
     @key: extract(@target, 1);
     @value: extract(@target, 2);
     .justify-content-@{key} {

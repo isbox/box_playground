@@ -1,12 +1,20 @@
-import Recat, { Component } from 'react';
-import { inject } from 'mobx-react';
+import React, { Component } from 'react';
+import { Avatar, Dropdown, Menu } from 'antd';
 
-// TODO: 登录组件
-@inject(rootStore => rootStore.store.userStore)
+
 class Login extends Component {
 
     render() {
-        return null;
+        const { userInfo } = this.props;
+        const name = userInfo.name.substring(0, 1);
+
+        return <div className={this.props.className}>
+            <Dropdown overlay={menu}>
+                <Avatar style={{background: Com.colorDie()}} icon={name ? '' : 'user'}>
+                    {name}
+                </Avatar>
+            </Dropdown>
+        </div>;
     }
 }
 
