@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Avatar, Dropdown, Menu } from 'antd';
 import Com from '@/lib/common';
 
@@ -13,17 +13,27 @@ const visitorMenu = (
     </Menu>
 );
 
-const User = function(props) {
-    const { userInfo } = props;
-    const name = userInfo.name.substring(0, 1);
+class User extends PureComponent {
+    constructor(props) {
+        super(props);
+        const { userInfo } = props;
+        const name = userInfo.name.substring(0, 1);
+        this.state = {
+            title: '',
+            username: name
+        };
+    }
 
-    return <div className={props.className}>
-        <Dropdown overlay={visitorMenu}>
-            <Avatar style={{background: Com.colorDie()}} icon={name ? '' : 'user'}>
-                {name}
-            </Avatar>
-        </Dropdown>
-    </div>;
+    render() {
+        const { username, ...props } = this.state;
+        return <div className={props.className}>
+            <Dropdown overlay={visitorMenu}>
+                <Avatar style={{background: Com.colorDie()}} icon={username ? '' : 'user'}>
+                    {username}
+                </Avatar>
+            </Dropdown>
+        </div>;
+    }
 };
 
 export default User;

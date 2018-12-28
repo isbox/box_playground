@@ -1,8 +1,11 @@
-import { observable, action, autorun } from 'mobx';
+import { observable, action } from 'mobx';
 import { fetch } from '@/lib/fetch';
 
 // TODO: 用户mobx模型
 export default class UserStore {
+    @observable
+    loginModal = false;
+    
     @observable
     userInfo = {
         name: '',
@@ -19,6 +22,18 @@ export default class UserStore {
     @action.bound
     userLogin(info) {
         this.userInfo = info;
+    }
+
+    @action.bound
+    openLogin() {
+        if ( !this.userInfo.token ) {
+            this.loginModal = true;
+        }
+    }
+
+    @action.bound
+    closeLogin() {
+        this.loginModal = false;
     }
 
     constructor(rootStore) {
