@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'mobx-react';
-import { Layout } from 'antd';
+import { LocaleProvider, Layout } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { bindAll } from 'lodash';
 import routes from './routes';
 import store from './store';
@@ -31,19 +32,21 @@ class App extends Component {
     }
 
     render() {
-        return <div id="app">
-            <Layout className="vh-100">
-                <Sider collapsed={this.state.side}>
+        return <LocaleProvider locale={zhCN}>
+            <div id="app">
+                <Layout className="vh-100">
+                    <Sider collapsed={this.state.side}>
 
-                </Sider>
-                <Layout>
-                    <Header sideControl={this.sideControl} />
-                    <Content>{routes()}</Content>
-                    <Footer>Footer</Footer>
+                    </Sider>
+                    <Layout>
+                        <Header sideControl={this.sideControl} />
+                        <Content>{routes()}</Content>
+                        <Footer>Footer</Footer>
+                    </Layout>
                 </Layout>
-            </Layout>
-            <LoginModal />
-        </div>;
+                <LoginModal />
+            </div>
+        </LocaleProvider>;
     }
 }
 
