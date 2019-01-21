@@ -6,7 +6,7 @@
 
 .distance(@as_type, @type, @as_locate, @locate, @num: 1) when (@num <= @mp_scope) {
     .@{as_type}@{as_locate}-@{num} {
-        @{type}-@{locate}: @num * 1px;
+        @{type}-@{locate}: @num * 0.05rem;
     }
     .distance(@as_type, @type, @as_locate, @locate, @num + 1);
 }
