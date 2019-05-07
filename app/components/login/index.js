@@ -1,7 +1,7 @@
 import React, { Component, PureComponent } from 'react';
 import { Modal, Input, Icon } from 'antd';
-import { bindAll } from 'lodash';
 import { inject, observer } from 'mobx-react';
+import api from './api';
 import './style.less';
 
 const getUserStore = rootStore => ({userStore: rootStore.store.userStore});
@@ -14,38 +14,46 @@ class LoginModal extends Component {
 		this.state = {
 			title: '登陆'
 		};
-		bindAll(this, [
-			'onCancel',
-			'onOk'
-		]);
+    this.loginData = {};
 	}
 
 	componentDidMount() {
 		this.props.userStore.openLogin();
 	}
 
-	onCancel() {
-		this.props.userStore.closeLogin();
-	}
+	onInput = (field) => {
+	  return e => {
+      this.loginData[field] = e.target.value.trim();
+    };
+  };
 
-	onOk() {
-    
+	onCancel = () => {
+		this.props.userStore.closeLogin();
+	};
+
+	onOk = () => {
+    api.login(this.loginData);
 		this.onCancel();
-	}
+	};
 
 	render() {
-		// onCancel={cancelCallback}
 		const { loginModal, userInfo } = this.props.userStore;
 		const { modalWidth, userIcon, passwordIcon } = this.props;
 		const { title } = this.state;
 
-		return <Modal width={modalWidth} visible={loginModal} title={title}
-		              onCancel={this.onCancel} onOk={this.onOk}>
-			<div className="login-modal">
-				<Input className="mb-10" placeholder="输入用账号/邮箱" prefix={userIcon} />
-				<Input placeholder="输入密码" prefix={passwordIcon} />
-			</div>
-		</Modal>;
+		return (
+      <Modal
+        width={modalWidth}
+        visible={loginModal}
+        title={title}
+        onCancel={this.onCancel}
+        onOk={this.onOk}>
+        <div className="login-modal">
+          <Input className="mb-10"onChange={this.onInput('email')} placeholder="输入用账号/邮箱" prefix={userIcon} />
+          <Input onChange={this.onInput('password')} placeholder="输入密码" prefix={passwordIcon} />
+        </div>
+      </Modal>
+    );
 	}
 }
 
