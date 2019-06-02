@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Layout, Icon } from 'antd';
 import User from '../user';
-import {inject} from "mobx-react";
+import { inject } from "mobx-react";
 
 @inject(rootStore => rootStore.store.userStore)
 export default class Header extends PureComponent {

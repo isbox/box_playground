@@ -1,17 +1,16 @@
 "use strict";
 const path = require('path');
 const config = require('./config');
+const webpack = require('webpack');
 
 function resolve(dir) {
-  return path.join(__dirname, '../', dir)
+  return path.join(__dirname, '../', dir);
 }
-
-// [`webpack-dev-server/client?localhost:${config.dev.port}`, resolve('app/app.js')],
 
 module.exports = {
   context: path.resolve('../'),
   entry: {
-    app: ['babel-polyfill', resolve('app/app.js')],
+    app: ['babel-polyfill', resolve('app/app.tsx')],
     vendors: ['react', 'react-dom', 'react-router']
   },
   output: {
@@ -24,7 +23,7 @@ module.exports = {
   },
   resolve: {
     modules: [resolve('node_modules')],
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
       '@': resolve('app'),
       '@lib': resolve('app/lib'),
@@ -38,7 +37,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js[x]?$/,
+        test: /\.[j|t]sx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         // loader: 'babel?presets[]=react,presets[]=es2015,plugins[]=transform-object-assign'
@@ -89,5 +88,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      React: 'react'
+    })
+  ]
 };
