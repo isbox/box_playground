@@ -1,13 +1,12 @@
-import UserStore from '@/models/user';
+import UserStore from '@models/user';
 import { observable, action } from 'mobx';
 
 class RootStore {
+    private userStore: UserStore;
 
   constructor() {
     this.userStore = new UserStore(this);
   }
 }
 
-declare module 'store' {
-  export default new RootStore();
-}
+export default new RootStore();

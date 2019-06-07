@@ -7,7 +7,15 @@
     "module": "commonjs",
     "target": "es6",
     "jsx": "react",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./app/*"],
+      "@lib/*": ["./app/lib/*"],
+      "@models/*": ["./app/models/*"],
+      "@components/*": ["./app/components/*"]
+    },
+    "allowJs": true
   },
   "include": [
     "./app/**/*"
