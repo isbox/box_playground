@@ -37,7 +37,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.[j|t]sx?$/,
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         // loader: 'babel?presets[]=react,presets[]=es2015,plugins[]=transform-object-assign'

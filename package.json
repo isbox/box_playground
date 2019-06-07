@@ -54,6 +54,8 @@
     "mockjs": "^1.0.1-beta3",
     "postcss-loader": "^2.1.6",
     "style-loader": "^0.21.0",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",
