@@ -1,4 +1,6 @@
-import {Component } from 'react';
+/// <reference path="./global.d.ts" />
+
+import { Component } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'mobx-react';
 import { LocaleProvider, Layout } from 'antd';
