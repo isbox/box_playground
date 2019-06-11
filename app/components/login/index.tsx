@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react';
 import api from './api';
 import './style.less';
 
-const getUserStore = rootStore => ({userStore: rootStore.store.userStore});
+const getUserStore = (rootStore: rootStore): userInfoStore => ({userStore: rootStore.store.userStore});
 
 @inject(getUserStore)
 @observer

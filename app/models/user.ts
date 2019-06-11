@@ -1,24 +1,12 @@
 import { observable, action } from 'mobx';
 
-interface userInfo {
-  name?: string,
-  nickname?: string,
-  uid: number | null,
-  token: string
-}
-
 // TODO: 用户mobx模型
 export default class UserStore {
   @observable
   loginModal = false;
 
   @observable
-  userInfo: userInfo = {
-    name: '',
-    nickname: '',
-    uid: null,
-    token: ''
-  };
+  userInfo: Mbox.userInfoStore
 
   @action.bound
   checkLogin() {
@@ -26,7 +14,7 @@ export default class UserStore {
   }
 
   @action.bound
-  userLogin(info: userInfo) {
+  userLogin(info: userInfoStore) {
     this.userInfo = info;
   }
 

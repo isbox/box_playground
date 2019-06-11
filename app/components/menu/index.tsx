@@ -1,8 +1,15 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Menu, Icon } from "antd";
 
-const ITEMS = [
+interface item {
+	title: string,
+	link: string,
+	icon: string,
+	key: string
+};
+
+const ITEMS: item[] = [
 	{
 		title: '首页',
 		link: '/',
@@ -11,14 +18,13 @@ const ITEMS = [
 	}
 ];
 
-export default class MenuComponent extends PureComponent {
-	constructor(props) {
+export default class MenuComponent extends PureComponent<{}> {
+	constructor(props: {}) {
 		super(props);
-		this.itemRender = this.itemRender.bind(this);
 	}
 
-	itemRender() {
-		return ITEMS.map(item => (
+	itemRender = () => {
+		return ITEMS.map((item: item) => (
 			<Menu.Item className="Item" key={item.key}>
 				<Link to={item.link}>
 					<Icon type="home" /> {item.title}

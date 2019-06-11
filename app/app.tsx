@@ -1,5 +1,3 @@
-/// <reference path="./global.d.ts" />
-
 import { Component } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'mobx-react';

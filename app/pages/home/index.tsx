@@ -37,7 +37,7 @@ export default class extends Component<props> {
         <Link to="/test/demo01">demo01页</Link>
         <h2>i am index</h2>
         <p>now you are in index page!</p>
-        <Button onClick={this.info} htmlType="button" type="primary">Display normal message</Button>
+        <Button href="" onClick={this.info} type="primary">Display normal message</Button>
       </Page>
     );
   }

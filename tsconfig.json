@@ -15,10 +15,14 @@
       "@models/*": ["./app/models/*"],
       "@components/*": ["./app/components/*"]
     },
-    "allowJs": true
+    // "allowJs": true
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useCache": true,
+    "useTranspileModule": true
   },
   "include": [
-    "./app/**/*"
+    "app"
   ],
   "exclude": [
     "node_modules"
