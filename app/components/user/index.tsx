@@ -3,7 +3,7 @@ import { Avatar, Dropdown, Menu } from 'antd';
 import Com from '@/lib/common';
 
 type props = {
-  className: string,
+  className?: string,
   userInfo: any
 }
 
@@ -27,7 +27,7 @@ class User extends PureComponent<props, state> {
   constructor(props: props) {
       super(props);
       const { userInfo = {} } = props;
-      const name = userInfo.name.substring(0, 1);
+      const name = userInfo.name ? userInfo.name.substring(0, 1) : '';
       this.state = {
           title: '',
           username: name

@@ -1,18 +1,7 @@
-module.exports = {
-    path: 'test',
-    indexRoute: {
-        getComponent(nextState, cb) {
-            require.ensure([], require => {
-                cb(null, require('./index').default);
-            }, 'test-index');
-        }
-    },
-    childRoutes: [{
-        path: 'demo01',
-        getComponent(nextState, cb) {
-            require.ensure([], require => {
-                cb(null, require('./demo01').default);
-            }, 'test-demo01');
-        }
-    }]
-};
+module.exports = [{
+  path: '/test',
+  content: () => import(/* webpackChunkName: test-index */ './index')
+}, {
+  path: '/test/demo01',
+  content: () => import(/* webpackChunkName: test-demo01 */ './demo01')
+}];

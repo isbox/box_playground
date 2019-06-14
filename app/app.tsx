@@ -8,6 +8,7 @@ import store from './store';
 import Header from '@components/header';
 import LoginModal from '@components/login';
 import Menu from '@components/menu';
+import { BrowserRouter } from 'react-router-dom';
 
 import 'antd/dist/antd.less';
 import './assets/css/app.less';
@@ -53,7 +54,9 @@ class App extends Component<{} , state> {
 
 render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.querySelector('#root')
 );

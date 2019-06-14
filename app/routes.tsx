@@ -1,6 +1,7 @@
-import { Switch, Route } from 'react-router';
-import { Component, ReactElement } from "react";
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import loader from 'react-loadable';
+import Loading from '@components/loader/page-loader';
 
 // class Content extends Component {
 //   render() {
@@ -27,17 +28,31 @@ const routes: object[] = [
   ...require('./pages/test/routes')
 ];
 
-export default (): ReactElement => {
+console.log(routes);
+
+export default (): JSX.Element => {
   return (
-    <Switch>
-      {
-        routes.map((route: route) => (
-          <Route
-            to={route.path}
-            exact={route.exact === false ? false : true }
-            component={route.content} />
-        ))
-      }
-    </Switch>
+    <TransitionGroup>
+      <CSSTransition key={window.location.pathname} classNames="xg-page-animate" timeout={300}>
+        <Switch>
+          {
+            routes.map((route: route) => {
+              const com = loader({
+                loader: route.content,
+                loading: Loading
+              });
+              return (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  exact={route.exact === false ? false : true }
+                  component={com}
+                />
+              );
+            })
+          }
+        </Switch>
+      </CSSTransition>
+    </TransitionGroup>
   );
 };

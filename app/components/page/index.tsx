@@ -1,10 +1,10 @@
-import * as React from 'react';
+import { FunctionComponent } from 'react';
 import './index.less';
 
-export default function Page(): React.ReactElement {
-	return (
-		<div className="page">
-			{this.props.children}
-		</div>
-	);
-}
+const Page: FunctionComponent = ({ children }) => (
+	<div className="page">
+		{children}
+	</div>
+)
+
+export default Page;

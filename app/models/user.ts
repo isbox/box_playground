@@ -1,20 +1,25 @@
 import { observable, action } from 'mobx';
 
+// implements mobxStore.userInfo.store
 // TODO: 用户mobx模型
-export default class UserStore {
+export default class UserStore implements mobxStore.userInfo.store {
+  constructor(rootStore: mobxStore.rootModel) {
+    // this.rootStore = rootStore;
+  }
+  
   @observable
   loginModal = false;
 
   @observable
-  userInfo: Mbox.userInfoStore
+  userInfo: mobxStore.userInfo.info = {}
 
   @action.bound
   checkLogin() {
-    return !!this.userInfo.token;
+    return !!this.userInfo.token
   }
 
   @action.bound
-  userLogin(info: userInfoStore) {
+  userLogin(info: mobxStore.userInfo.info) {
     this.userInfo = info;
   }
 
@@ -28,9 +33,5 @@ export default class UserStore {
   @action.bound
   closeLogin() {
     this.loginModal = false;
-  }
-
-  constructor(rootStore: any) {
-    // this.rootStore = rootStore;
   }
 }

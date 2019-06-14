@@ -1,8 +1,7 @@
 import UserStore from '@models/user';
-import { observable, action } from 'mobx';
 
-class RootStore {
-  public userStore: UserStore;
+class RootStore implements mobxStore.rootModel {
+  public userStore: mobxStore.userInfo.store;
 
   constructor() {
     this.userStore = new UserStore(this);

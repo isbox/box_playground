@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
+    "@types/react-loadable": "^5.5.1",
     "@types/react-router": "^5.0.1",
     "@types/react-router-dom": "^4.3.3",
     "@types/react-transition-group": "^2.9.1",
