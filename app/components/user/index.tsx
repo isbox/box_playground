@@ -4,7 +4,7 @@ import Com from '@/lib/common';
 
 type props = {
   className?: string,
-  userInfo: any
+  userStore: mobxStore.userInfo.store
 }
 
 type state = {
@@ -12,21 +12,10 @@ type state = {
   username: string
 }
 
-const visitorMenu = (
-  <Menu>
-      <Menu.Item key="0">
-          <a>登陆</a>
-      </Menu.Item>
-      <Menu.Item key="1">
-          <a>注册</a>
-      </Menu.Item>
-  </Menu>
-);
-
 class User extends PureComponent<props, state> {
   constructor(props: props) {
       super(props);
-      const { userInfo = {} } = props;
+      const { userStore: { userInfo } } = props;
       const name = userInfo.name ? userInfo.name.substring(0, 1) : '';
       this.state = {
           title: '',
@@ -34,17 +23,31 @@ class User extends PureComponent<props, state> {
       };
   }
 
+  menuRender = () => {
+    const { userStore: { openLogin } } = this.props;
+    return (
+      <Menu>
+        <Menu.Item key="0">
+          <a onClick={openLogin}>登陆</a>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <a>注册</a>
+        </Menu.Item>
+      </Menu>
+    );
+  };
+
   render() {
       const { username } = this.state;
-      const { className } = this.props
+      const { className } = this.props;
       return <div className={className}>
-          <Dropdown overlay={visitorMenu}>
+          <Dropdown overlay={this.menuRender()}>
               <Avatar style={{background: Com.colorDie()}} icon={username ? '' : 'user'}>
                   {username}
               </Avatar>
           </Dropdown>
       </div>;
   }
-};
+}
 
 export default User;

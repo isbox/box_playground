@@ -5,14 +5,20 @@ interface loginRequestParams {
 }
 
 interface loginResponseParams {
-  data: number
+  token: string
+  userInfo: {
+    _id: string,
+    status: number,
+    gender: string | number,
+    name: string,
+    birthday: string,
+    telephone: string,
+    email: string
+  }
 }
 
-export const login = async function(params: loginRequestParams): Promise<loginResponseParams> {
-  try {
-    const response = await post('/api/v0/user/sign_in', params);
-    return response.data
-  } catch (e) {}
+export const login = function(params: loginRequestParams): Promise<loginResponseParams> {
+  return post('/api/v0/user/sign_in', params)
 };
 
 export default {

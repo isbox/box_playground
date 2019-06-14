@@ -11,7 +11,7 @@ export default class UserStore implements mobxStore.userInfo.store {
   loginModal = false;
 
   @observable
-  userInfo: mobxStore.userInfo.info = {}
+  userInfo: mobxStore.userInfo.info = {};
 
   @action.bound
   checkLogin() {

@@ -6,7 +6,7 @@ import './style.less';
 
 interface userStore {
   userStore?: mobxStore.userInfo.store
-};
+}
 
 enum inputFeild {
 	email = 'email',
@@ -30,7 +30,7 @@ class LoginModal extends Component<props, { title: string }> {
 	loginData: {
 		email?: string,
 		password?: string
-	}
+	};
 
 	constructor(props: props) {
 		super(props);

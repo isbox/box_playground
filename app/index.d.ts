@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 declare global {
-  const React: typeof React
+  const React: typeof React;
 
   namespace mobxStore {
     interface rootModel {
