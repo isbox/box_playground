@@ -74,7 +74,12 @@ module.exports = {
           loader: 'less-loader',
           options: {
             sourceMap: true,
-            javascriptEnabled: true
+            javascriptEnabled: true,
+            modifyVars: {
+              'primary-color': '#1890ff',
+              'text-color': '#eb4e4e',
+              'text-color-secondary': '#eb4e4e'
+            }
           }
         }]
       }, {

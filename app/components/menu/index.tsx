@@ -35,7 +35,7 @@ export default class MenuComponent extends PureComponent<{}> {
 
 	render() {
 		return (
-			<Menu defaultSelectedKeys={[ITEMS[0].key]} mode="inline" theme="dark">
+			<Menu defaultSelectedKeys={[ITEMS[0].key]} mode="inline">
 				{this.itemRender()}
 			</Menu>
 		);

@@ -36,7 +36,7 @@ class App extends Component<{} , state> {
       <LocaleProvider locale={zhCN}>
         <div id="app">
           <Layout className="vh-100">
-            <Sider collapsed={this.state.side}>
+            <Sider style={{ background: '#fff' }} collapsed={this.state.side}>
               <Menu />
             </Sider>
             <Layout>

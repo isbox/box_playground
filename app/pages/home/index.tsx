@@ -44,7 +44,6 @@ class HomePage extends Component<props> {
   };
 
   render() {
-    console.log(1111111);
     return (
       <Page>
         <Link to="/">首页</Link>1

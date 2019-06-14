@@ -41,7 +41,7 @@ class LoginModal extends Component<props, { title: string }> {
 	}
 
 	componentDidMount() {
-		this.props.userStore.openLogin();
+		// this.props.userStore.openLogin();
 	}
 
 	onInput = (field: inputFeild) => {
