@@ -2,7 +2,7 @@ import React, { Component, ChangeEvent } from 'react';
 import { Modal, Input, Icon, message } from 'antd';
 import { inject, observer } from 'mobx-react';
 import commom from '@lib/common';
-import api from './api';
+import * as api from './api';
 import './style.less';
 
 interface userStore {
@@ -41,8 +41,13 @@ class LoginModal extends Component<props, { title: string }> {
     this.loginData = { email: '', password: '' };
 	}
 
-	componentDidMount() {
-		// this.props.userStore.openLogin();
+	async componentDidMount() {
+    const token = commom.getLocalStorage('token');
+    if ((token as string)) {
+    	const { userLogin } = this.props.userStore;
+    	const res = await api.exchangeUserInfoByToken({ token: (token as string) });
+      userLogin(res.userInfo);
+		}
 	}
 
 	onInput = (field: inputFeild) => {
@@ -60,7 +65,7 @@ class LoginModal extends Component<props, { title: string }> {
 		const res = await api.login(this.loginData);
 		const { userLogin } = this.props.userStore;
 		commom.setLocalStorage('token', res.token);
-		userLogin(res.userInfo)
+		userLogin(res.userInfo);
 		message.success('登录成功');
 		this.onCancel();
 	};

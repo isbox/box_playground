@@ -1,12 +1,6 @@
 import { post } from '@lib/fetch';
 
-interface loginRequestParams {
-  email: string,
-  password: string
-}
-
-interface loginResponseParams {
-  token: string
+interface userInfo {
   userInfo: {
     _id: string,
     status: number,
@@ -18,10 +12,27 @@ interface loginResponseParams {
   }
 }
 
-export const login = async function(params: loginRequestParams) {
+interface loginRequestParams {
+  email: string,
+  password: string
+}
+
+interface loginResponseParams extends userInfo {
+  token: string
+}
+
+export const login = function(params: loginRequestParams) {
   return post<loginResponseParams>('/api/v0/user/sign_in', params).then(res => res);
 };
 
-export default {
-  login
+
+interface userTokenParams {
+  token: string
+}
+
+interface userInfoResponse extends userInfo {}
+
+export const exchangeUserInfoByToken = function(params: userTokenParams) {
+  return post<userInfoResponse>('/api/v0/user/getInfo', params).then(res => res);
 };
+
