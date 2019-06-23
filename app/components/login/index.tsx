@@ -1,6 +1,7 @@
 import React, { Component, ChangeEvent } from 'react';
-import { Modal, Input, Icon } from 'antd';
+import { Modal, Input, Icon, message } from 'antd';
 import { inject, observer } from 'mobx-react';
+import commom from '@lib/common';
 import api from './api';
 import './style.less';
 
@@ -28,8 +29,8 @@ const getUserStore = (rootStore: mobxStore.rootStore): userStore => (
 class LoginModal extends Component<props, { title: string }> {
 	static defaultProps: { modalWidth: string; userIcon: JSX.Element; passwordIcon: JSX.Element; };
 	loginData: {
-		email?: string,
-		password?: string
+		email: string,
+		password: string
 	};
 
 	constructor(props: props) {
@@ -37,7 +38,7 @@ class LoginModal extends Component<props, { title: string }> {
 		this.state = {
 			title: '登陆'
 		};
-    this.loginData = {};
+    this.loginData = { email: '', password: '' };
 	}
 
 	componentDidMount() {
@@ -54,8 +55,13 @@ class LoginModal extends Component<props, { title: string }> {
 		this.props.userStore.closeLogin();
 	};
 
-	onOk = () => {
-    api.login(this.loginData);
+	// 登陆，成功后存入token及用户信息
+	onOk = async () => {
+		const res = await api.login(this.loginData);
+		const { userLogin } = this.props.userStore;
+		commom.setLocalStorage('token', res.token);
+		userLogin(res.userInfo)
+		message.success('登录成功');
 		this.onCancel();
 	};
 

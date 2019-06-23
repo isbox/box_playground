@@ -1,4 +1,5 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
+import common from '@/lib/common';
 
 // implements mobxStore.userInfo.store
 // TODO: 用户mobx模型
@@ -11,11 +12,13 @@ export default class UserStore implements mobxStore.userInfo.store {
   loginModal = false;
 
   @observable
+  isLogin = common.getLocalStorage('token');
+
+  @observable
   userInfo: mobxStore.userInfo.info = {};
 
-  @action.bound
-  checkLogin() {
-    return !!this.userInfo.token
+  @computed get login() {
+    return !!this.isLogin
   }
 
   @action.bound
@@ -25,9 +28,7 @@ export default class UserStore implements mobxStore.userInfo.store {
 
   @action.bound
   openLogin() {
-    if (!this.userInfo.token) {
-      this.loginModal = true;
-    }
+    this.loginModal = true;
   }
 
   @action.bound

@@ -18,7 +18,7 @@ declare global {
       interface store {
         loginModal: boolean,
         userInfo: info,
-        checkLogin: () => boolean,
+        login: boolean,
         userLogin: (info: info) => void,
         openLogin: () => void,
         closeLogin: () => void

@@ -1,7 +1,8 @@
 import { post } from '@lib/fetch';
 
 interface loginRequestParams {
-  
+  email: string,
+  password: string
 }
 
 interface loginResponseParams {
@@ -17,8 +18,8 @@ interface loginResponseParams {
   }
 }
 
-export const login = function(params: loginRequestParams): Promise<loginResponseParams> {
-  return post('/api/v0/user/sign_in', params)
+export const login = async function(params: loginRequestParams) {
+  return post<loginResponseParams>('/api/v0/user/sign_in', params).then(res => res);
 };
 
 export default {
